@@ -1,22 +1,32 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using Vocas.Models; // Make sure to use the correct namespace for your models
+using Vocas.Models; // Make sure this is the correct namespace for your Word model
 
 namespace Vocas.Data
 {
     public class VocasContext : DbContext
     {
+        public DbSet<Word> Words { get; set; }
+
         public VocasContext(DbContextOptions<VocasContext> options) : base(options)
         {
         }
 
-        public DbSet<Word> Words { get; set; }
-
-        // If you have other entities, they would be included here as well, for example:
-        // public DbSet<AnotherEntity> AnotherEntities { get; set; }
+        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+        {
+            if (!optionsBuilder.IsConfigured)
+            {
+                IConfigurationRoot configuration = new ConfigurationBuilder()
+                    .SetBasePath(Directory.GetCurrentDirectory())
+                    .AddJsonFile("appsettings.json")
+                    .Build();
+                var connectionString = configuration.GetConnectionString("DefaultConnection");
+                optionsBuilder.UseMySql(connectionString, ServerVersion.AutoDetect(connectionString));
+            }
+        }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            modelBuilder.Entity<Word>().ToTable("Word");
+            modelBuilder.Entity<Word>().ToTable("Words");
             // Configure other entities and relationships here if necessary
         }
     }
