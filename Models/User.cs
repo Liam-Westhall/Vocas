@@ -9,4 +9,4 @@
         public virtual ICollection<Word> VocabTerms { get; set; }
     }
 }
-}
+
