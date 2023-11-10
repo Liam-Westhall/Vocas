@@ -2,8 +2,7 @@ using Newtonsoft.Json.Serialization;
 using Vocas.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.AspNetCore.Identity;
-
-
+using Vocas.Models;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -15,6 +14,11 @@ builder.Services.AddDbContext<VocasContext>(options =>
     options.UseMySql(builder.Configuration.GetConnectionString("VocabAppCon"), ServerVersion.AutoDetect(builder.Configuration.GetConnectionString("VocabAppCon"))));
 
 builder.Services.AddDefaultIdentity<User>(options => options.SignIn.RequireConfirmedAccount = true).AddEntityFrameworkStores<VocasContext>();
+builder.Services.ConfigureApplicationCookie(options =>
+{
+    options.LoginPath = "/Identity/Account/Login";
+    options.AccessDeniedPath = "/Identity/Account/AccessDenied";
+});
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 builder.Services.AddCors(c =>
@@ -36,6 +40,7 @@ if (app.Environment.IsDevelopment())
     app.UseSwaggerUI();
 }
 
+app.UseAuthentication();
 app.UseAuthorization();
 
 app.MapControllers();
