@@ -1,4 +1,10 @@
 ﻿@page
-@model Vocas.Pages.Word.IndexModel
-@{
+@model IndexModel
+
+@foreach (var word in Model.Word)
+{
+    <div>
+        <p>@word.Text - @word.Meaning</p>
+        <!-- Display other properties as needed -->
+    </div>
 }

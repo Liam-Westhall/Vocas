@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 using Vocas.Models;
 using Vocas.Data;
 
+namespace Vocas.Pages.Word;
 public class CreateModel : PageModel
 {
     private readonly VocasContext _context;
@@ -13,7 +14,7 @@ public class CreateModel : PageModel
     }
 
     [BindProperty]
-    public Word Word { get; set; }
+    public Vocas.Models.Word Word { get; set; }
 
     public IActionResult OnGet()
     {
