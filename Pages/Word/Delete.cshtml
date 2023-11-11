@@ -1,4 +1,30 @@
 ﻿@page
 @model Vocas.Pages.Word.DeleteModel
-@{
-}
+
+<h2>Delete Word</h2>
+
+<form method="post">
+    <input type="hidden" asp-for="Word.WordID" />
+
+    <!-- Display Text -->
+    <div class="form-group">
+        <label class="control-label">Text:</label>
+        <p>@Model.Word.Term</p>
+    </div>
+
+    <!-- Display Definition -->
+    <div class="form-group">
+        <label class="control-label">Definition:</label>
+        <p>@Model.Word.Definition</p>
+    </div>
+
+    <!-- Display Example -->
+    <div class="form-group">
+        <label class="control-label">Example:</label>
+        <p>@Model.Word.Example</p>
+    </div>
+
+    <!-- Display other properties here -->
+
+    <input type="submit" value="Delete" class="btn btn-danger" />
+</form>

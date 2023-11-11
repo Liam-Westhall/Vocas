@@ -1,4 +1,29 @@
 ﻿@page
 @model Vocas.Pages.Word.EditModel
-@{
-}
+
+<h2>Edit Word</h2>
+
+<form method="post">
+    <input type="hidden" asp-for="Word.WordID" />
+
+    <div class="form-group">
+        <label asp-for="Word.Term" class="control-label"></label>
+        <input asp-for="Word.Term" class="form-control" />
+        <span asp-validation-for="Word.Term" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="Word.Definition" class="control-label"></label>
+        <input asp-for="Word.Definition" class="form-control" />
+        <span asp-validation-for="Word.Definition" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="Word.Example" class="control-label"></label>
+        <input asp-for="Word.Example" class="form-control" />
+        <span asp-validation-for="Word.Example" class="text-danger"></span>
+    </div>
+    <!-- Add fields for other properties here -->
+
+    <input type="submit" value="Save" class="btn btn-primary" />
+</form>

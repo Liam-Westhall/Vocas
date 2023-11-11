@@ -4,6 +4,7 @@ using Vocas.Models;
 using Vocas.Data;
 using Microsoft.EntityFrameworkCore;
 
+namespace Vocas.Pages.Word;
 public class DeleteModel : PageModel
 {
     private readonly VocasContext _context;
@@ -14,11 +15,11 @@ public class DeleteModel : PageModel
     }
 
     [BindProperty]
-    public Word Word { get; set; }
+    public Vocas.Models.Word Word { get; set; }
 
     public async Task<IActionResult> OnGetAsync(int id)
     {
-        Word = await _context.Words.FirstOrDefaultAsync(m => m.WordId == id);
+        Word = await _context.Words.FirstOrDefaultAsync(m => m.WordID == id);
 
         if (Word == null)
         {

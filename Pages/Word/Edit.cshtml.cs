@@ -4,6 +4,8 @@ using Vocas.Models;
 using Vocas.Data;
 using Microsoft.EntityFrameworkCore;
 
+
+namespace Vocas.Pages.Word;
 public class EditModel : PageModel
 {
     private readonly VocasContext _context;
@@ -14,11 +16,11 @@ public class EditModel : PageModel
     }
 
     [BindProperty]
-    public Word Word { get; set; }
+    public Vocas.Models.Word Word { get; set; }
 
     public async Task<IActionResult> OnGetAsync(int id)
     {
-        Word = await _context.Words.FirstOrDefaultAsync(m => m.WordId == id);
+        Word = await _context.Words.FirstOrDefaultAsync(m => m.WordID == id);
 
         if (Word == null)
         {
@@ -42,7 +44,7 @@ public class EditModel : PageModel
         }
         catch (DbUpdateConcurrencyException)
         {
-            if (!WordExists(Word.WordId))
+            if (!WordExists(Word.WordID))
             {
                 return NotFound();
             }
@@ -57,6 +59,6 @@ public class EditModel : PageModel
 
     private bool WordExists(int id)
     {
-        return _context.Words.Any(e => e.WordId == id);
+        return _context.Words.Any(e => e.WordID == id);
     }
 }
