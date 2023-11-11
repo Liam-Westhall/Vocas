@@ -1,0 +1,28 @@
+﻿@page
+@model Vocas.Pages.Word.CreateModel
+
+<h2>Create New Word</h2>
+
+<form method="post">
+    <div class="form-group">
+        <label asp-for="Word.Text" class="control-label"></label>
+        <input asp-for="Word.Text" class="form-control" />
+        <span asp-validation-for="Word.Text" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="Word.Definition" class="control-label"></label>
+        <input asp-for="Word.Definition" class="form-control" />
+        <span asp-validation-for="Word.Definition" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="Word.Example" class="control-label"></label>
+        <input asp-for="Word.Example" class="form-control" />
+        <span asp-validation-for="Word.Example" class="text-danger"></span>
+    </div>
+
+    <!-- Add additional fields for any other properties in your Word model here -->
+
+    <input type="submit" value="Create" class="btn btn-primary" />
+</form>

@@ -2,8 +2,6 @@
 using Microsoft.AspNetCore.Mvc;
 using System.Data;
 using System.Data.SqlClient;
-using Vocas.Data;
-using Vocas.Models;
 
 namespace Vocas.Controllers
 {
@@ -13,12 +11,6 @@ namespace Vocas.Controllers
     {
 
         private readonly IConfiguration _configuration;
-        private readonly VocasContext _context;
-
-        public WordController(VocasContext context)
-        {
-            _context = context;
-        }
 
         public WordController(IConfiguration configuration)
         {
@@ -48,27 +40,6 @@ namespace Vocas.Controllers
                 }
             }
             return new JsonResult(table);
-        }
-
-        [HttpGet]
-        public IActionResult Create()
-        {
-            return View();
-        }
-
-
-
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("WordId,Text,Meaning,Example")] Word word)
-        {
-            if (ModelState.IsValid)
-            {
-                _context.Add(word);
-                await _context.SaveChangesAsync();
-                return RedirectToAction(nameof(Index));
-            }
-            return View(word);
         }
 
 
