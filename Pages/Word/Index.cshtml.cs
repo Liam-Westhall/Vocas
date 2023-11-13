@@ -3,6 +3,7 @@ using Vocas.Models;
 using Vocas.Data;
 using Microsoft.EntityFrameworkCore;
 
+namespace Vocas.Pages.Word;
 public class IndexModel : PageModel
 {
     private readonly VocasContext _context;
@@ -12,7 +13,7 @@ public class IndexModel : PageModel
         _context = context;
     }
 
-    public IList<Word>? Word { get; set; }
+    public IList<Vocas.Models.Word>? Word { get; set; }
 
     public async Task OnGetAsync()
     {
