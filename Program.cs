@@ -38,13 +38,19 @@ app.UseCors(options => options.AllowAnyOrigin().AllowAnyMethod().AllowAnyHeader(
 //    app.UseSwaggerUI();
 //}
 
+
+app.UseHttpsRedirection();
+app.UseStaticFiles();
+
+
+app.UseRouting();
+
+
 app.UseAuthentication();
 app.UseAuthorization();
 
 // Add default route for MVC
-app.MapControllerRoute(
-    name: "default",
-    pattern: "{controller=Home}/{action=Index}/{id?}");  // <-- Add this line
+app.MapRazorPages();
 app.MapControllers();
 
 
