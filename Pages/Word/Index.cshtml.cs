@@ -12,7 +12,7 @@ public class IndexModel : PageModel
         _context = context;
     }
 
-    public IList<Word> Word { get; set; }
+    public IList<Word>? Word { get; set; }
 
     public async Task OnGetAsync()
     {
